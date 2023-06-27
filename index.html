@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Save and Search Data</title>
+</head>
+<body>
+  <h1>Save and Search Data</h1>
+
+  <form id="dataForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required><br><br>
+
+    <input type="submit" value="Save">
+  </form>
+
+  <hr>
+
+  <h2>Search</h2>
+
+  <form id="searchForm">
+    <label for="searchId">Search by ID:</label>
+    <input type="text" id="searchId" name="searchId" required><br><br>
+
+    <input type="submit" value="Search">
+  </form>
+
+  <h3 id="searchResult"></h3>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Submit form and save data to server
+      $("#dataForm").submit(function(e) {
+        e.preventDefault();
+
+        var name = $("#name").val();
+        var id = $("#id").val();
+
+        // Send AJAX request to save data
+        $.ajax({
+          url: "/saveData",
+          type: "POST",
+          data: {
+            name: name,
+            id: id
+          },
+          success: function(response) {
+            alert("Data saved successfully!");
+            $("#name").val("");
+            $("#id").val("");
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+            alert("Error occurred while saving data. Please try again.");
+          }
+        });
+      });
+
+      // Search for data based on ID
+      $("#searchForm").submit(function(e) {
+        e.preventDefault();
+
+        var searchId = $("#searchId").val();
+
+        // Send AJAX request to search data
+        $.ajax({
+          url: "/searchData",
+          type: "POST",
+          data: {
+            searchId: searchId
+          },
+          success: function(response) {
+            $("#searchResult").text(response);
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+            alert("Error occurred while searching data. Please try again.");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
