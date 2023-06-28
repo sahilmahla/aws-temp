@@ -7,10 +7,10 @@ const port = 3000;
 
 // Create MySQL connection
 const connection = mysql.createConnection({
-  host: 'your_rds_host',
-  user: 'your_username',
-  password: 'your_password',
-  database: 'your_database_name'
+  host: 'your-rds-endpoint',
+  user: 'admin',
+  password: process.env.RDS_PASSWORD,
+  database: 'your-database-name'
 });
 
 // Connect to MySQL
