@@ -7,7 +7,7 @@ const port = 3000;
 
 // Create MySQL connection
 const connection = mysql.createConnection({
-  host: 'mydbinstance.cuwgbs295spp.us-east-1.rds.amazonaws.com',
+  host: process.env.RDS_ENDPOINT,
   user: 'admin',
   password: process.env.RDS_PASSWORD,
   database: 'your-database-name'
