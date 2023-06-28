@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
   host: process.env.RDS_ENDPOINT,
   user: 'admin',
   password: process.env.RDS_PASSWORD,
-  database: 'your-database-name'
+  database: 'mydbinstance'
 });
 
 // Connect to MySQL
