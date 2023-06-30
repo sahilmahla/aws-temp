@@ -4,13 +4,13 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
-
+const dbName = 'MyDBInstance2';
 // Create MySQL connection
 const connection = mysql.createConnection({
   host: process.env.RDS_ENDPOINT,
   user: 'admin',
   password: process.env.RDS_PASSWORD,
-  database: 'mydbinstance2'
+  database: dbName
 });
 
 // Connect to MySQL
