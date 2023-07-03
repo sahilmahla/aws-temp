@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const port = 3000;
+const port = 80;
 const dbName = 'MyDBInstance2';
 
 // Create MySQL connection
@@ -50,6 +50,9 @@ app.post('/saveData', (req, res) => {
     if (err) throw err;
     res.send('Data saved successfully!');
   });
+});
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
 // Handle POST request to search data by id and retrieve name
